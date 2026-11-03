@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Input Data Sekolah</title>
+</head>
+<body>
+    <h2>Form Input Data Sekolah</h2>
+
+    <form action="input.php" onsubmit="return validateForm(event)" method="post">
+        <label for="npsn">NPSN:</label><br>
+        <input type="text" id="npsn" name="npsn"><br><br>
+
+        <label for="nama">Nama Sekolah:</label><br>
+        <input type="text" id="nama" name="nama"><br><br>
+
+        <label for="status">Status (Negeri/Swasta):</label><br>
+        <input type="text" id="status" name="status"><br><br>
+
+        <label for="alamat">Alamat:</label><br>
+        <input type="text" id="alamat" name="alamat"><br><br>
+
+        <label for="desa">Desa/Kelurahan:</label><br>
+        <input type="text" id="desa" name="desa"><br><br>
+
+        <label for="kec">Kecamatan:</label><br>
+        <input type="text" id="kec" name="kecamatan"><br><br>
+
+        <label for="kab">Kabupaten/Kota:</label><br>
+        <input type="text" id="kab" name="kabupaten"><br><br>
+
+        <label for="lat">Latitude:</label><br>
+        <input type="text" id="lat" name="latitude"><br><br>
+
+        <label for="long">Longitude:</label><br>
+        <input type="text" id="long" name="longitude"><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <p id="informasi" style="color: red;"></p>
+
+    <script>
+    function validateForm(event) {
+        let npsn = document.getElementById("npsn").value;
+        let nama = document.getElementById("nama").value;
+        let lat = document.getElementById("lat").value;
+        let long = document.getElementById("long").value;
+        let text = "";
+
+        if (npsn.trim() === "" || nama.trim() === "") {
+            text = "NPSN dan Nama Sekolah tidak boleh kosong!";
+            event.preventDefault();
+            document.getElementById("informasi").innerHTML = text;
+            return false;
+        }
+
+        if (isNaN(lat) || lat === "" || isNaN(long) || long === "") {
+            text = "Latitude dan Longitude harus berupa angka koordinat yang valid!";
+            event.preventDefault();
+            document.getElementById("informasi").innerHTML = text;
+            return false;
+        }
+
+        return true;
+    }
+    </script>
+</body>
+</html>
